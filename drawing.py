@@ -4,13 +4,7 @@ from models.Graphics import Graphics
 from models.Shape import Shape
 from OpenGL.GL import *
 
-
-
-
-
 graphics=Graphics()
-
-
 
 def displaySky():
     higherRectanglePoints=[Point(0,0),Point(800,0),Point(800,150),Point(0,150)]
@@ -20,6 +14,7 @@ def displaySky():
 def displayGarden():
     gardenRectangularPoints=[Point(0,150),Point(800,150),Point(800,270),Point(0,270)]
     Shape.displayRectangle(points=gardenRectangularPoints,color=(0,229/255,3/255,1))
+
 
 def displayBuildings():
 
@@ -59,6 +54,17 @@ def displayBuildings():
     depthPoints=[Point(620,100),Point(635,110),Point(635,260),Point(620,270)]
     Shape.displayRectangle(points=depthPoints,color=(1/255,65/255,64/255,255/255))
 
+def displayCars():
+    blueCarBodyPoints1=[Point(260,340),Point(500,340),Point(510,380),Point(260,380)]
+    blueCarHeadPoints=[Point(290,340),Point(340,280),Point(440,280),Point(460,340)]
+    windowPoints 
+    
+    Shape.displayRectangle(points = blueCarBodyPoints1, color=(0,0,1,1))
+    Shape.displayRectangle(points = blueCarHeadPoints, color=(0,0,1,1))
+    Shape.displayCircle(centerPoint = Point(340,380), radius = 15 , color=(0,0,0,0))
+    Shape.displayCircle(centerPoint = Point(450,380) , radius = 15, color = (0,0,0,0))
+    
+
 
 
 def displayTrafficLight():
@@ -77,11 +83,6 @@ def displayTrafficLight():
     Shape.displayCircle(centerPoint=Point(665,160),radius=11,color=(253/255,253/255,4/255,255/255))
     Shape.displayCircle(centerPoint=Point(665,185),radius=11,color=(0/255,178/255,0/255,255/255))
 
-
-
-
-    
-
 def displayStreetLight():
     rectangularPoints=[Point(180,230),Point(190,230),Point(190,325),Point(180,325)] 
     Shape.displayRectangle(points=rectangularPoints,color=(0,0,0,0))
@@ -99,12 +100,6 @@ def displayTree():
     Shape.displayCircle(centerPoint=Point(217,170),radius=15,color=(2/255,128/255,1/255,255/255))
     Shape.displayCircle(centerPoint=Point(217,152),radius=10,color=(2/255,128/255,1/255,255/255))
     
-    
-    
-
-
-
-
 
 def displayRoad():
     lighterRectangularPoints=[Point(0,270),Point(800,270),Point(800,330),Point(0,330)]
@@ -112,7 +107,6 @@ def displayRoad():
     Shape.displayRectangle(points=lighterRectangularPoints,color=(126/255,127/255,126/255,1))   
     
     Shape.displayRectangle(points=darkerRectangularPoints,color=(50/255,52/255,50/255,1))
-
 
 
 def displaySun():
@@ -133,10 +127,6 @@ def displayClouds():
     Shape.displayCircle(centerPoint=Point(160,40),radius=10,color=(255,255,255,1))
 
 
-
-
-     
-
 def totalDisplay():
    displaySky()
    displayGarden()
@@ -147,13 +137,6 @@ def totalDisplay():
    displayTree()
    displayTrafficLight()
    displayStreetLight()
-
-   
-
-
-
-    
-
+   displayCars()
 
 graphics.initializeWindow(totalDisplay)
-

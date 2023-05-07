@@ -7,9 +7,6 @@ from models.Point import Point
 
 class Shape:
 
-
- 
-
     def displayRectangle(points:list,color):
       
         
@@ -24,9 +21,7 @@ class Shape:
         glEnd()
         glFlush()
 
-                
-           
-
+            
     def displayTriangle(points:list,color):
         
 
@@ -37,13 +32,8 @@ class Shape:
         for point in points:
             glVertex2f(point.x,point.y)
 
-
-
-
-       
         glEnd()
         glFlush()
-
 
 
     def displayCircle(centerPoint:Point,radius,color:set):
@@ -66,7 +56,6 @@ class Shape:
           glFlush()
    
 
-
     def displayLine(p1,p2):
       glBegin(GL_LINE_STRIP)
       glColor4f(1,1,0,1)
@@ -74,7 +63,3 @@ class Shape:
       glVertex2f(p2.x,p2.y)
       glEnd()
       glFlush()
-
-
-
-
