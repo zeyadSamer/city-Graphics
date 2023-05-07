@@ -8,7 +8,7 @@ from OpenGL.GL import *
 
 
 
-x=-200
+x=-260
 trafficColor=(1,0,0,1)
 graphics=Graphics()
 
@@ -22,12 +22,32 @@ def displayGarden():
     Shape.displayRectangle(points=gardenRectangularPoints,color=(0,229/255,3/255,1))
 
 def displayDoors():
-    blueBuildingDoorPoints=[Point(35,270),Point(35,220),Point(65,220),Point(65,270)]
+    blueBuildingDoorPoints=[Point(35,220),Point(65,220),Point(65,270),Point(35,270)]
     Shape.displayRectangle(points=blueBuildingDoorPoints,color=(0,0,0,0))
 
+    brownBuildingDoorPoints=[Point(98+15+10,120+120),Point(168-15,120+120),Point(168-15,270),Point(98+15+10,270)]
+    Shape.displayRectangle(points=brownBuildingDoorPoints,color=(0,0,0,0))
+
     
-def displayWindows():
-    blueBuildingWindowPoints=[]
+def displayBlueBuildingWindows():
+    blueBuildingWindow1Points=[Point(15,188+5),Point(40,188+5),Point(40,208),Point(15,208)]
+    blueBuildingWindow2Points=[Point((15+35+5),188+5),Point((40+35+5),188+5),Point((40+35+5),208),Point((15+35+5),208)]
+    blueBuildingWindow3Points=[Point(15,158+5),Point(40,158+5),Point(40,178),Point(15,178)]
+    blueBuildingWindow4Points=[Point((15+35+5),158+5),Point((40+35+5),158+5),Point((40+35+5),178),Point((15+35+5),178)]
+    blueBuildingWindow5Points=[Point(15,128+5),Point(40,128+5),Point(40,148),Point(15,148)]
+    blueBuildingWindow6Points=[Point((15+35+5),128+5),Point((40+35+5),128+5),Point((40+35+5),148),Point((15+35+5),148)]
+    blueBuildingWindow7Points=[Point(15,98+5),Point(40,98+5),Point(40,118),Point(15,118)]
+    blueBuildingWindow8Points=[Point((15+35+5),98+5),Point((40+35+5),98+5),Point((40+35+5),118),Point((15+35+5),118)]
+
+    Shape.displayRectangle(points= blueBuildingWindow1Points, color=(0,0,0,0))
+    Shape.displayRectangle(points= blueBuildingWindow2Points, color=(0,0,0,0))
+    Shape.displayRectangle(points= blueBuildingWindow3Points, color=(0,0,0,0))
+    Shape.displayRectangle(points= blueBuildingWindow4Points, color=(0,0,0,0))
+    Shape.displayRectangle(points= blueBuildingWindow5Points, color=(0,0,0,0))
+    Shape.displayRectangle(points= blueBuildingWindow6Points, color=(0,0,0,0))
+    Shape.displayRectangle(points= blueBuildingWindow7Points, color=(0,0,0,0))
+    Shape.displayRectangle(points= blueBuildingWindow8Points, color=(0,0,0,0))
+    
 
 
 def displayBuildings():
@@ -196,6 +216,8 @@ def totalDisplay():
     displayBlueCar()
     displayRedCar()
     displayDoors()
+    displayBlueBuildingWindows()
+
     
     
 
