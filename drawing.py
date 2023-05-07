@@ -1,4 +1,5 @@
 
+from time import sleep
 from models.Point import Point
 from models.Graphics import Graphics
 from models.Shape import Shape
@@ -7,7 +8,8 @@ from OpenGL.GL import *
 
 
 
-
+x=-260
+trafficColor=(1,0,0,1)
 graphics=Graphics()
 
 
@@ -20,6 +22,15 @@ def displaySky():
 def displayGarden():
     gardenRectangularPoints=[Point(0,150),Point(800,150),Point(800,270),Point(0,270)]
     Shape.displayRectangle(points=gardenRectangularPoints,color=(0,229/255,3/255,1))
+
+def displayDoors():
+    blueBuildingDoorPoints=[Point(35,270),Point(35,220),Point(65,220),Point(65,270)]
+    Shape.displayRectangle(points=blueBuildingDoorPoints,color=(0,0,0,0))
+
+    
+def displayWindows():
+    blueBuildingWindowPoints=[]
+
 
 def displayBuildings():
 
@@ -61,6 +72,46 @@ def displayBuildings():
 
 
 
+def displayBlueCar():
+    carBodyPoints1=[Point(260+x,340),Point(500+x,340),Point(510+x,380),Point(260+x,380)]
+    carHeadPoints2=[Point(290+x,340),Point(340+x,280),Point(440+x,280),Point(460+x,340)]
+    
+
+    Shape.displayRectangle(points = carBodyPoints1, color=(0,0,1,1))
+    Shape.displayRectangle(points = carHeadPoints2, color=(0,0,1,1))
+    Shape.displayCircle(centerPoint = Point(340+x,380), radius = 15 , color=(0,0,0,0))
+    Shape.displayCircle(centerPoint = Point(450+x,380) , radius = 15, color = (0,0,0,0))
+    windowPoints=[Point(298+x,335),Point( 340+x,285),Point(380+x,285),Point(380+x,335)]
+
+
+    Shape.displayRectangle(points=windowPoints,color=(0,0,0,0))
+    windowPoints=[Point(383+x,285),Point( 435+x,285),Point(449+x,335),Point(383+x,335)]
+    
+    Shape.displayRectangle(points=windowPoints,color=(0,0,0,0))
+
+def displayRedCar():
+   
+    carBodyPoints1=[Point(260,340),Point(430,340),Point(430,380),Point(260,380)]
+    carHeadPoints2=[Point(260,340),Point(310,280),Point(410,280),Point(430,340)]
+    edgePoints=[Point(430,340),Point(465,345),Point(465,380),Point(430,380)]
+    Shape.displayRectangle(points=edgePoints,color=(226/255, 48/255, 14/255,1))
+    
+
+    Shape.displayRectangle(points = carBodyPoints1, color=(226/255, 48/255, 14/255,1))
+    Shape.displayRectangle(points = carHeadPoints2, color=(226/255, 48/255, 14/255,1))
+    Shape.displayCircle(centerPoint = Point(310,380), radius = 15 , color=(0,0,0,0))
+    Shape.displayCircle(centerPoint = Point(410,380) , radius = 15, color = (0,0,0,0))
+    windowPoints=[Point(268,335),Point( 310,285),Point(350,285),Point(350,335)]
+
+
+    Shape.displayRectangle(points=windowPoints,color=(0,0,0,0))
+    windowPoints=[Point(353,285),Point( 405,285),Point(419,335),Point(353,335)]
+    
+    Shape.displayRectangle(points=windowPoints,color=(0,0,0,0))
+
+
+
+    
 def displayTrafficLight():
     rectangularPoints=[Point(660,140),Point(670,140),Point(670,325),Point(660,325)] 
     Shape.displayRectangle(points=rectangularPoints,color=(230/255,49/255,1/255,255/255))
@@ -138,15 +189,22 @@ def displayClouds():
      
 
 def totalDisplay():
-   displaySky()
-   displayGarden()
-   displayRoad()
-   displaySun()
-   displayClouds()
-   displayBuildings()
-   displayTree()
-   displayTrafficLight()
-   displayStreetLight()
+    displaySky()
+    displayGarden()
+    displayRoad()
+    displaySun()
+    displayClouds()
+    displayBuildings()
+    displayTree()
+    displayTrafficLight()
+    displayStreetLight()
+  
+    
+    displayBlueCar()
+    displayRedCar()
+    displayDoors()
+    
+    
 
    
 
