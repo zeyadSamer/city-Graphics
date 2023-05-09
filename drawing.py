@@ -32,6 +32,14 @@ def displayDoors():
     redBuildingDoorPoints=[Point((245+15+10),220),Point((245+15+40),220),Point((245+15+40),270),Point((245+15+10),270)]
     Shape.displayRectangle(points=redBuildingDoorPoints,color=Color.black)
 
+    towerDoorPoints=[Point((340+7), 200),Point((340+27),200),Point((340+27),270),Point((340+7),270)]
+    Shape.displayRectangle(points=towerDoorPoints,color=Color.black)
+
+    greenBuildingDoorPoints=[Point(410,240),Point(480,240),Point(480,270),Point(410,270)]
+    Shape.displayRectangle(points=greenBuildingDoorPoints, color=Color.black)
+
+    lastBuildingDoorPoints=[Point(410+130+5,240),Point(480+130-5,240),Point(480+130-5,270),Point(410+130+5,270)]
+    Shape.displayRectangle(points=lastBuildingDoorPoints, color=Color.black)
     
 def displayBlueBuildingWindows():
     blueBuildingWindow1Points=[Point(15,188+5),Point(40,188+5),Point(40,208),Point(15,208)]
@@ -54,6 +62,45 @@ def displayBlueBuildingWindows():
     Shape.displayRectangle(points= blueBuildingWindow6Points, color=Color.black)
     Shape.displayRectangle(points= blueBuildingWindow7Points, color=Color.black)
     Shape.displayRectangle(points= blueBuildingWindow8Points, color=Color.black)
+
+def displayLastBuildingWindows():
+    lastBuildingWindow1Points=[Point(525,188+5),Point(550,188+5),Point(550,208),Point(525,208)]
+    lastBuildingWindow2Points=[Point(520+40,188+5),Point(545+40,188+5),Point(545+40,208),Point(520+40,208)]
+    lastBuildingWindow3Points=[Point(515+80,188+5),Point(540+80,188+5),Point(540+80,208),Point(515+80,208)]
+    
+    lastBuildingWindow4Points=[Point(525,158+5),Point(550,158+5),Point(550,178),Point(525,178)]
+    lastBuildingWindow5Points=[Point(520+40,158+5),Point(545+40,158+5),Point(545+40,178),Point(520+40,178)]
+    lastBuildingWindow6Points=[Point(515+80,158+5),Point(540+80,158+5),Point(540+80,178),Point(515+80,178)]
+
+
+    lastBuildingWindow7Points=[Point(525,128+5),Point(550,128+5),Point(550,148),Point(525,148)]
+    lastBuildingWindow8Points=[Point(520+40,128+5),Point(545+40,128+5),Point(545+40,148),Point(520+40,148)]
+    lastBuildingWindow9Points=[Point(515+80,128+5),Point(540+80,128+5),Point(540+80,148),Point(515+80,148)]
+
+
+
+    lastBuildingWindow10Points=[Point(525,98+5),Point(550,98+5),Point(550,118),Point(525,118)]
+    lastBuildingWindow11Points=[Point(520+40,98+5),Point(545+40,98+5),Point(545+40,118),Point(520+40,118)]
+    lastBuildingWindow12Points=[Point(515+80,98+5),Point(540+80,98+5),Point(540+80,118),Point(515+80,118)]
+
+    
+
+    Shape.displayRectangle(points=lastBuildingWindow1Points, color=Color.black)
+    Shape.displayRectangle(points=lastBuildingWindow2Points, color=Color.black)
+    Shape.displayRectangle(points=lastBuildingWindow3Points, color=Color.black)
+
+    Shape.displayRectangle(points=lastBuildingWindow4Points, color=Color.black)
+    Shape.displayRectangle(points=lastBuildingWindow5Points, color=Color.black)
+    Shape.displayRectangle(points=lastBuildingWindow6Points, color=Color.black)
+
+    Shape.displayRectangle(points=lastBuildingWindow7Points, color=Color.black)
+    Shape.displayRectangle(points=lastBuildingWindow8Points, color=Color.black)
+    Shape.displayRectangle(points=lastBuildingWindow9Points, color=Color.black)
+    
+    Shape.displayRectangle(points=lastBuildingWindow10Points, color=Color.black)
+    Shape.displayRectangle(points=lastBuildingWindow11Points, color=Color.black)
+    Shape.displayRectangle(points=lastBuildingWindow12Points, color=Color.black)
+
 
 def displayBrownBuildingWindows():
     brownBuildingWindow1Points=[Point(103,200),Point(128,200),Point(128,215),Point(103,215)]
@@ -97,6 +144,39 @@ def displayRedBuildingWindows():
 
     Shape.displayRectangle(points=redBuildingWindow7Points,color=Color.black)
     Shape.displayRectangle(points=redBuildingWindow8Points,color=Color.black)
+
+def displayTowerWindows():
+    towerWindow1Points=[Point((340+5),98+5),Point((340+30),98+5),Point((340+30),150),Point((340+5),150)]
+
+    Shape.displayRectangle(points=towerWindow1Points, color=Color.black)
+
+def displayGreenBuildingWindows():
+    greenBuildingWindow1Points=[Point(380,150),Point(405,150),Point(405,180),Point(380,180)]
+    greenBuildingWindow2Points=[Point(415,150),Point(440,150),Point(440,180),Point(415,180)]
+
+    greenBuildingWindow3Points=[Point(450,150),Point(475,150),Point(475,180),Point(450,180)]
+    greenBuildingWindow4Points=[Point(485,150),Point(510,150),Point(510,180),Point(485,180)]
+
+    greenBuildingWindow5Points=[Point(380,190),Point(405,190),Point(405,220),Point(380,220)]
+    greenBuildingWindow6Points=[Point(415,190),Point(440,190),Point(440,220),Point(415,220)]
+
+    greenBuildingWindow7Points=[Point(450,190),Point(475,190),Point(475,220),Point(450,220)]
+    greenBuildingWindow8Points=[Point(485,190),Point(510,190),Point(510,220),Point(485,220)]
+
+    Shape.displayRectangle(points=greenBuildingWindow1Points, color=Color.black)
+    Shape.displayRectangle(points=greenBuildingWindow2Points, color=Color.black)
+
+    Shape.displayRectangle(points=greenBuildingWindow3Points, color=Color.black)
+    Shape.displayRectangle(points=greenBuildingWindow4Points, color=Color.black)
+
+    Shape.displayRectangle(points=greenBuildingWindow5Points, color=Color.black)
+    Shape.displayRectangle(points=greenBuildingWindow6Points, color=Color.black)
+
+    Shape.displayRectangle(points=greenBuildingWindow7Points, color=Color.black)
+    Shape.displayRectangle(points=greenBuildingWindow8Points, color=Color.black)
+
+
+
 
 def displayBuildings():
 
@@ -255,6 +335,9 @@ def totalDisplay():
     displayBlueBuildingWindows()
     displayBrownBuildingWindows()
     displayRedBuildingWindows()
+    displayTowerWindows()
+    displayGreenBuildingWindows()
+    displayLastBuildingWindows()
 
     
     
