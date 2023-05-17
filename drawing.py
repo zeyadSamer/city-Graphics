@@ -5,22 +5,69 @@ from models.Graphics import Graphics
 from models.Shape import Shape
 from models.Color import Color
 from OpenGL.GL import *
+from OpenGL.GLUT import *
 
 
 
 
 x=-260
-trafficColor=(1,0,0,1)
-graphics=Graphics()
+r=0.001
+x_pos=0
+trafficColor=[Color.red,Color.black,Color.black]
+
+circleColor=Color.sunColor
+gardenColor=Color.green
+skyColor=Color.sunnySkyColor
+
+
+
+
+
+
+def keyboardFunction(key,x,y):
+  
+    global trafficColor,circleColor,gardenColor,skyColor
+    if key == b'r':
+        trafficColor[0] = Color.red  # red
+        trafficColor[2]=Color.black
+    elif key == b'g':
+        
+        trafficColor[2] = Color.green  # red
+        trafficColor[0]=Color.black
+
+    elif key==b'd':
+        circleColor=Color.moonColor
+        gardenColor=Color.darkGreen
+        skyColor=Color.black
+
+    elif key==b'w':
+        circleColor=Color.sunColor
+        gardenColor=Color.green
+        skyColor=Color.sunnySkyColor
+
+
+
+
+
+
+
+       
+    
+    
+
+    
+
+
+
 
 def displaySky():
     higherRectanglePoints=[Point(0,0),Point(800,0),Point(800,150),Point(0,150)]
-    Shape.displayRectangle(points=higherRectanglePoints,color=(4/255,228/255,226/255,1))
+    Shape.displayRectangle(points=higherRectanglePoints,color=skyColor)
 
 
 def displayGarden():
     gardenRectangularPoints=[Point(0,150),Point(800,150),Point(800,270),Point(0,270)]
-    Shape.displayRectangle(points=gardenRectangularPoints,color=(0,229/255,3/255,1))
+    Shape.displayRectangle(points=gardenRectangularPoints,color=gardenColor)
 
 def displayDoors():
     blueBuildingDoorPoints=[Point(35,220),Point(65,220),Point(65,270),Point(35,270)]
@@ -269,9 +316,12 @@ def displayTrafficLight():
     
     #light circles
 
-    Shape.displayCircle(centerPoint=Point(665,135),radius=11,color=Color.black)
-    Shape.displayCircle(centerPoint=Point(665,160),radius=11,color=(253/255,253/255,4/255,255/255))
-    Shape.displayCircle(centerPoint=Point(665,185),radius=11,color=(0/255,178/255,0/255,255/255))
+
+
+    Shape.displayCircle(centerPoint=Point(665,135),radius=11,color=trafficColor[0])
+    Shape.displayCircle(centerPoint=Point(665,160),radius=11,color=trafficColor[1])#(253/255,253/255,4/255,255/255)
+    Shape.displayCircle(centerPoint=Point(665,185),radius=11,color=trafficColor[2])#(0/255,178/255,0/255,255/255)
+   
 
 def displayStreetLight():
     rectangularPoints=[Point(180,230),Point(190,230),Point(190,325),Point(180,325)] 
@@ -300,29 +350,51 @@ def displayRoad():
 
 
 def displaySun():
-    Shape.displayCircle(centerPoint=Point(40,40),radius=20,color=(1,1,0,1))
+    Shape.displayCircle(centerPoint=Point(40,40),radius=20,color=circleColor)
 
 
 def displayClouds():
-    Shape.displayCircle(centerPoint=Point(200,40),radius=10,color=(255,255,255,1))
-    Shape.displayCircle(centerPoint=Point(220,40),radius=17,color=(255,255,255,1))
-    Shape.displayCircle(centerPoint=Point(240,40),radius=17,color=(255,255,255,1))
-    Shape.displayCircle(centerPoint=Point(260,40),radius=17,color=(255,255,255,1))
-    Shape.displayCircle(centerPoint=Point(280,40),radius=10,color=(255,255,255,1))
 
+    global x_pos,r
+  
+    glLoadIdentity()
+    glPushMatrix()
+    glTranslatef(x_pos,0,0)
 
-    Shape.displayCircle(centerPoint=Point(100,40),radius=10,color=(255,255,255,1))
-    Shape.displayCircle(centerPoint=Point(120,40),radius=17,color=(255,255,255,1))
-    Shape.displayCircle(centerPoint=Point(140,40),radius=17,color=(255,255,255,1))
-    Shape.displayCircle(centerPoint=Point(160,40),radius=10,color=(255,255,255,1))
+    # Shape.displayCircle(centerPoint=Point(200,40),radius=10,color=(255,255,255,1))
+    # Shape.displayCircle(centerPoint=Point(220,40),radius=17,color=(255,255,255,1))
+    # Shape.displayCircle(centerPoint=Point(240,40),radius=17,color=(255,255,255,1))
+    # Shape.displayCircle(centerPoint=Point(260,40),radius=17,color=(255,255,255,1))
+    # Shape.displayCircle(centerPoint=Point(280,40),radius=10,color=(255,255,255,1))
+    # Shape.displayCircle(centerPoint=Point(100,40),radius=10,color=(255,255,255,1))
+    # Shape.displayCircle(centerPoint=Point(120,40),radius=17,color=(255,255,255,1))
+    # Shape.displayCircle(centerPoint=Point(140,40),radius=17,color=(255,255,255,1))
+    # Shape.displayCircle(centerPoint=Point(160,40),radius=10,color=(255,255,255,1))
 
+    glPointSize(10)
+    glBegin(GL_POINTS)
+    
+    glVertex2f(100,200)
+    glEnd()
+    
+    glPopMatrix()
+    x_pos+=r
+    if x_pos >= 0.9:
+        x_pos = -0.9 
+        
+    glutSwapBuffers()
+    
 
 def totalDisplay():
     displaySky()
     displayGarden()
     displayRoad()
     displaySun()
-    displayClouds()
+   
+    if(circleColor==Color.sunColor):
+       displayClouds()
+
+
     displayBuildings()
     displayTree()
     displayTrafficLight()
@@ -338,8 +410,15 @@ def totalDisplay():
     displayTowerWindows()
     displayGreenBuildingWindows()
     displayLastBuildingWindows()
+    glutSwapBuffers()
+
 
     
-    
+graphics=Graphics()  
 
-graphics.initializeWindow(totalDisplay)
+
+
+
+
+graphics.initializeWindow(display=totalDisplay,idleFunction=totalDisplay,keyboardFunction=keyboardFunction)
+

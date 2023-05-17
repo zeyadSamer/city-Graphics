@@ -6,6 +6,7 @@ import numpy as np
 from models.Point import Point
 
 class Shape:
+    x=0
 
     def displayRectangle(points:list,color):
       
@@ -54,7 +55,19 @@ class Shape:
          
           glEnd()
           glFlush()
-   
+
+
+
+    def applyTransformation(self,objectDisplayFunction):
+    
+       glLoadIdentity()
+       glPushMatrix()
+       glTranslate(self.x,0,0)
+       objectDisplayFunction()
+       glPopMatrix()      
+       self.x+=0.1  
+    
+     
 
     def displayLine(p1,p2):
       glBegin(GL_LINE_STRIP)
