@@ -56,16 +56,6 @@ class Shape:
           glEnd()
           glFlush()
 
-
-
-    def applyTransformation(self,objectDisplayFunction):
-    
-       glLoadIdentity()
-       glPushMatrix()
-       glTranslate(self.x,0,0)
-       objectDisplayFunction()
-       glPopMatrix()      
-
     
      
 

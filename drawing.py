@@ -3,6 +3,7 @@ import math
 from time import sleep
 
 import numpy as np
+from models.Transformation import Transformation
 from models.Point import Point
 from models.Graphics import Graphics
 from models.Shape import Shape
@@ -270,8 +271,7 @@ def displayBuildings():
 
 
 def displayBlueCar():
-    glPushMatrix()
-    glTranslatef(x_pos,0,0)
+   
     carBodyPoints1=[Point(260+x,340),Point(500+x,340),Point(510+x,380),Point(260+x,380)]
     carHeadPoints2=[Point(290+x,340),Point(340+x,280),Point(440+x,280),Point(460+x,340)]
     
@@ -287,11 +287,9 @@ def displayBlueCar():
     windowPoints=[Point(383+x,285),Point( 435+x,285),Point(449+x,335),Point(383+x,335)]
     
     Shape.displayRectangle(points=windowPoints,color=Color.black)
-    glPopMatrix()
-
+   
 def displayRedCar():
-    glPushMatrix()
-    glTranslatef(x_pos,0,0)
+    
     
     carBodyPoints1=[Point(260,340),Point(430,340),Point(430,380),Point(260,380)]
     carHeadPoints2=[Point(260,340),Point(310,280),Point(410,280),Point(430,340)]
@@ -308,7 +306,7 @@ def displayRedCar():
     windowPoints=[Point(353,285),Point( 405,285),Point(419,335),Point(353,335)]
     
     Shape.displayRectangle(points=windowPoints,color=Color.black)
-    glPopMatrix()
+    
 
 
     
@@ -410,8 +408,9 @@ def totalDisplay():
     displayTowerWindows()
     displayGreenBuildingWindows()
     displayLastBuildingWindows()
-    displayBlueCar()
-    displayRedCar()
+    #displayBlueCar()
+    Transformation.translate(displayBlueCar,x_pos,0)
+    Transformation.translate(displayRedCar,x_pos,0)
    
     glutSwapBuffers()
     glFlush()
