@@ -288,6 +288,7 @@ def displayBlueCar():
     
     Shape.displayRectangle(points=windowPoints,color=Color.black)
     glPopMatrix()
+
 def displayRedCar():
     glPushMatrix()
     glTranslatef(x_pos,0,0)
@@ -297,13 +298,11 @@ def displayRedCar():
     edgePoints=[Point(430,340),Point(465,345),Point(465,380),Point(430,380)]
     Shape.displayRectangle(points=edgePoints,color=(226/255, 48/255, 14/255,1))
     
-
     Shape.displayRectangle(points = carBodyPoints1, color=(226/255, 48/255, 14/255,1))
     Shape.displayRectangle(points = carHeadPoints2, color=(226/255, 48/255, 14/255,1))
     Shape.displayCircle(centerPoint = Point(310,380), radius = 15 , color=Color.black)
     Shape.displayCircle(centerPoint = Point(410,380) , radius = 15, color = Color.black)
     windowPoints=[Point(268,335),Point( 310,285),Point(350,285),Point(350,335)]
-
 
     Shape.displayRectangle(points=windowPoints,color=Color.black)
     windowPoints=[Point(353,285),Point( 405,285),Point(419,335),Point(353,335)]
@@ -392,7 +391,7 @@ def totalDisplay():
     displaySky()
     displayGarden()
     displayRoad()
-    displaySun()
+    
    
     if(circleColor==Color.sunColor):
        displayClouds()
@@ -402,7 +401,7 @@ def totalDisplay():
     displayTrafficLight()
     displayStreetLight()
   
-    
+    displaySun()
     
     displayDoors()
     displayBlueBuildingWindows()
@@ -429,6 +428,8 @@ def updateCloud():
 
     if(trafficColor[0]!=Color.red):
        x_pos+=0.7
+       if(x_pos>700):
+           x_pos=100
    
 
     glutPostRedisplay()
