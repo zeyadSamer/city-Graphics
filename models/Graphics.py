@@ -1,22 +1,13 @@
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
-from models.Shape import Shape
+
 
 class Graphics:
 
 
 
 
-    
-    # def __init__(self,idleFunction,keyboardFunction) :
-    #     self.idleFunction=idleFunction
-    #     self.keyboardFunction=keyboardFunction
-        
-    # def initializeTransformation(self):
-    #     glutIdleFunc(self.idleFunction)
-    #     glutKeyboardFunc(self.keyboardFunction)
-       
 
 
         
@@ -28,6 +19,9 @@ class Graphics:
         
     def redisplay():
         glutPostRedisplay()
+
+    def swapBuffer():
+        glutSwapBuffers()    
 
 
     def initializeWindow(self,display,idleFunction,keyboardFunction):

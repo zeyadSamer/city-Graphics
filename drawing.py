@@ -1,16 +1,11 @@
 
-import math
-from time import sleep
 
-import numpy as np
+
 from models.Transformation import Transformation
 from models.Point import Point
 from models.Graphics import Graphics
 from models.Shape import Shape
 from models.Color import Color
-from OpenGL.GL import *
-from OpenGL.GLUT import *
-
 
 
 
@@ -50,7 +45,7 @@ def keyboardFunction(key,x,y):
         gardenColor=Color.green
         skyColor=Color.sunnySkyColor
     
-    glutPostRedisplay()
+    Graphics.redisplay()
 
 
 
@@ -412,8 +407,8 @@ def totalDisplay():
     Transformation.translate(displayBlueCar,x_pos,0)
     Transformation.translate(displayRedCar,x_pos,0)
    
-    glutSwapBuffers()
-    glFlush()
+    Graphics.swapBuffer()
+    #glFlush()
   
     
 graphics=Graphics()  
@@ -431,7 +426,8 @@ def updateCloud():
            x_pos=100
    
 
-    glutPostRedisplay()
+    # glutPostRedisplay()
+    Graphics.redisplay()
         
    
 
