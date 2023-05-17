@@ -65,7 +65,7 @@ class Shape:
        glTranslate(self.x,0,0)
        objectDisplayFunction()
        glPopMatrix()      
-       self.x+=0.1  
+
     
      
 
