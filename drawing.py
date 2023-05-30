@@ -1,13 +1,12 @@
-
-
+#12th Week Lab Assignment
+#Ahmed El-Hussein Ahmed 19106798
+#Zeyad Ahmed Samer 20106344
 
 from models.Transformation import Transformation
 from models.Point import Point
 from models.Graphics import Graphics
 from models.Shape import Shape
 from models.Color import Color
-
-
 
 x=-260
 r=0.001
@@ -17,12 +16,6 @@ trafficColor=[Color.red,Color.black,Color.black]
 circleColor=Color.sunColor
 gardenColor=Color.green
 skyColor=Color.sunnySkyColor
-
-
-
-
-
-
 
 def keyboardFunction(key,x,y):
   
@@ -46,19 +39,6 @@ def keyboardFunction(key,x,y):
         skyColor=Color.sunnySkyColor
     
     Graphics.redisplay()
-
-
-
-
-
-
-       
-    
-    
-
-    
-
-
 
 
 def displaySky():
@@ -310,15 +290,11 @@ def displayTrafficLight():
     Shape.displayRectangle(points=rectangularPoints,color=(230/255,49/255,1/255,255/255))
 
     #traffic head
-
     rectangularPoints=[Point(645,120),Point(685,120),Point(685,200),Point(645,200)] 
     Shape.displayRectangle(points=rectangularPoints,color=(174/255,179/255,172/255,255/255))
     
     
     #light circles
-
-
-
     Shape.displayCircle(centerPoint=Point(665,135),radius=11,color=trafficColor[0])
     Shape.displayCircle(centerPoint=Point(665,160),radius=11,color=trafficColor[1])#(253/255,253/255,4/255,255/255)
     Shape.displayCircle(centerPoint=Point(665,185),radius=11,color=trafficColor[2])#(0/255,178/255,0/255,255/255)
@@ -351,18 +327,12 @@ def displayRoad():
 
 
 def displaySun():
-    global x_pos,r
-    
-    #glLoadIdentity()
-  
-      
+    global x_pos
     Shape.displayCircle(centerPoint=Point(40,40),radius=20,color=circleColor)
   
   
 
 def displayClouds():
-
-   
 
     Shape.displayCircle(centerPoint=Point(200,40),radius=10,color=(255,255,255,1))
     Shape.displayCircle(centerPoint=Point(220,40),radius=17,color=(255,255,255,1))
@@ -373,9 +343,6 @@ def displayClouds():
     Shape.displayCircle(centerPoint=Point(120,40),radius=17,color=(255,255,255,1))
     Shape.displayCircle(centerPoint=Point(140,40),radius=17,color=(255,255,255,1))
     Shape.displayCircle(centerPoint=Point(160,40),radius=10,color=(255,255,255,1))
-
-   
-    #glutSwapBuffers()
     
 
 def totalDisplay():
@@ -403,35 +370,24 @@ def totalDisplay():
     displayTowerWindows()
     displayGreenBuildingWindows()
     displayLastBuildingWindows()
-    #displayBlueCar()
     Transformation.translate(displayBlueCar,x_pos,0)
     Transformation.translate(displayRedCar,x_pos,0)
    
     Graphics.swapBuffer()
-    #glFlush()
   
     
 graphics=Graphics()  
 
-
-
 def updateCloud():
  
-    
-    global x_pos,r
+    global x_pos
 
     if(trafficColor[0]!=Color.red):
        x_pos+=0.7
        if(x_pos>700):
            x_pos=100
    
-
-    # glutPostRedisplay()
     Graphics.redisplay()
-        
-   
-
-
+    
 
 graphics.initializeWindow(display=totalDisplay,idleFunction=updateCloud,keyboardFunction=keyboardFunction)
-

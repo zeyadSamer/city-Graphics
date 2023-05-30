@@ -1,3 +1,7 @@
+#12th Week Lab Assignment
+#Ahmed El-Hussein Ahmed 19106798
+#Zeyad Ahmed Samer 20106344
+
 from OpenGL.GL import *
 
 class Transformation:
@@ -7,4 +11,3 @@ class Transformation:
         glTranslatef(x_trans,y_trans,0)
         objectDisplay()
         glPopMatrix()
-

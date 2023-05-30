@@ -1,3 +1,7 @@
+#12th Week Lab Assignment
+#Ahmed El-Hussein Ahmed 19106798
+#Zeyad Ahmed Samer 20106344
+
 import math
 from OpenGL.GL import *
 from OpenGL.GLU import *
@@ -10,7 +14,6 @@ class Shape:
 
     def displayRectangle(points:list,color):
       
-        
         glBegin(GL_QUADS)
         glColor4f(*color)
        
@@ -18,14 +21,12 @@ class Shape:
              glVertex2f(point.x,point.y)
 
        
-
         glEnd()
         glFlush()
 
             
     def displayTriangle(points:list,color):
         
-
         # Draw the triangle 
         glBegin(GL_TRIANGLES)
         glColor4f(*color)
@@ -38,10 +39,7 @@ class Shape:
 
 
     def displayCircle(centerPoint:Point,radius,color:set):
-          
-          #The problem was here 
-          #glClear(GL_COLOR_BUFFER_BIT) 
-
+        
           glBegin(GL_POLYGON)
           glColor4f(*color)
           x_centre = centerPoint.x
