@@ -59,9 +59,9 @@ class Shape:
     
      
 
-    def displayLine(p1,p2):
+    def displayLine(p1,p2,color):
       glBegin(GL_LINE_STRIP)
-      glColor4f(1,1,0,1)
+      glColor4f(*color)
       glVertex2f(p1.x,p1.y)
       glVertex2f(p2.x,p2.y)
       glEnd()

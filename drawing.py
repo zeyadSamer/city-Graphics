@@ -10,9 +10,12 @@ from models.Color import Color
 
 
 x=-260
-r=0.001
+r=10
 x_pos=0
+planeXPosition=0
+planeYPosition=0
 trafficColor=[Color.red,Color.black,Color.black]
+
 
 circleColor=Color.sunColor
 gardenColor=Color.green
@@ -23,10 +26,10 @@ skyColor=Color.sunnySkyColor
 
 
 
-
 def keyboardFunction(key,x,y):
-  
-    global trafficColor,circleColor,gardenColor,skyColor
+
+
+    global trafficColor,circleColor,gardenColor,skyColor,r
     if key == b'r':
         trafficColor[0] = Color.red  # red
         trafficColor[2]=Color.black
@@ -45,6 +48,14 @@ def keyboardFunction(key,x,y):
         gardenColor=Color.green
         skyColor=Color.sunnySkyColor
     
+    elif key==b'b':
+        r=-20
+
+    elif key==b'f':
+        r=20    
+     
+        
+        
     Graphics.redisplay()
 
 
@@ -54,9 +65,17 @@ def keyboardFunction(key,x,y):
 
        
     
-    
+            
 
-    
+def displayPlane():
+    offset=20
+
+    planeBodyPoints=[Point(400,100-offset),Point(450,80-offset),Point(580,80-offset),Point(580,100-offset)]
+    Shape.displayRectangle(points=planeBodyPoints,color=Color.red)            
+    planeTailPoints=[Point(550,80-offset),Point(580,50-offset),Point(600,50-offset),Point(580,100-offset)]
+    Shape.displayRectangle(points=planeTailPoints,color=Color.red) 
+    tailLinePoints=[Point(600,50-offset),Point(610,50-offset)]
+    Shape.displayLine(*tailLinePoints,color=Color.red)
 
 
 
@@ -382,6 +401,8 @@ def totalDisplay():
   
     
     displaySky()
+    
+    
     displayGarden()
     displayRoad()
     
@@ -404,8 +425,11 @@ def totalDisplay():
     displayGreenBuildingWindows()
     displayLastBuildingWindows()
     #displayBlueCar()
+    Transformation.translate(objectDisplay=displayPlane,x_trans=planeXPosition,y_trans=planeYPosition)
+    
     Transformation.translate(displayBlueCar,x_pos,0)
     Transformation.translate(displayRedCar,x_pos,0)
+
    
     Graphics.swapBuffer()
     #glFlush()
@@ -415,13 +439,13 @@ graphics=Graphics()
 
 
 
-def updateCloud():
+def updateCars():
  
     
     global x_pos,r
 
     if(trafficColor[0]!=Color.red):
-       x_pos+=0.7
+       x_pos+=r
        if(x_pos>700):
            x_pos=100
    
@@ -430,8 +454,22 @@ def updateCloud():
     Graphics.redisplay()
         
    
+def updatePlane():
+    global planeXPosition , planeYPosition
+    planeXPosition-=1
+    planeYPosition-=1
+    if(planeYPosition<0  or planeXPosition<0):
+        planeXPosition=900
+        planeYPosition=60
+
+
+    Graphics.redisplay()      
+   
+def idleFunction():
+    updatePlane()
+    updateCars()   
 
 
 
-graphics.initializeWindow(display=totalDisplay,idleFunction=updateCloud,keyboardFunction=keyboardFunction)
+graphics.initializeWindow(display=totalDisplay,idleFunction=idleFunction,keyboardFunction=keyboardFunction)
 
