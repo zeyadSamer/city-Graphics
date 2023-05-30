@@ -5,9 +5,11 @@
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
+from PIL import Image
 
 
 class Graphics:
+
 
     def initializeSettings(self):
         
@@ -19,6 +21,16 @@ class Graphics:
 
     def swapBuffer():
         glutSwapBuffers()    
+
+    def load_texture(self):
+        texture = glGenTextures(1)
+        glBindTexture(GL_TEXTURE_2D, texture)
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
+        image = Image.open("bus.jpg")
+        flipped_image = image.transpose(Image.FLIP_TOP_BOTTOM)
+        img_data = flipped_image.convert("RGBA").tobytes()
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, flipped_image.width, flipped_image.height, 0, GL_RGBA, GL_UNSIGNED_BYTE , img_data)
+
 
 
     def initializeWindow(self,display,idleFunction,keyboardFunction):
@@ -32,4 +44,6 @@ class Graphics:
         glutDisplayFunc(display)
         glutIdleFunc(idleFunction)
         glutKeyboardFunc(keyboardFunction)
+        self.load_texture()
+
         glutMainLoop()

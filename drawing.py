@@ -7,6 +7,12 @@ from models.Point import Point
 from models.Graphics import Graphics
 from models.Shape import Shape
 from models.Color import Color
+from OpenGL.GL import *
+from OpenGL.GLU import *
+from OpenGL.GLUT import *
+from PIL import Image
+
+texture = None
 
 x=-260
 r=10
@@ -15,18 +21,44 @@ planeXPosition=0
 planeYPosition=0
 trafficColor=[Color.red,Color.black,Color.black]
 
-
 circleColor=Color.sunColor
 gardenColor=Color.green
 skyColor=Color.sunnySkyColor
 
+# def load_texture():
+#     global texture
+#     texture = glGenTextures(1)
+#     glBindTexture(GL_TEXTURE_2D, texture)
+#     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
+#     image = Image.open("bus.png")
+#     flipped_image = image.transpose(Image.FLIP_TOP_BOTTOM)
+#     img_data = flipped_image.convert("RGBA").tobytes()
+#     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, flipped_image.width, flipped_image.height, 0, GL_RGBA, GL_UNSIGNED_BYTE , img_data)
 
+def displayBusTexture():
 
+    #glClear(GL_COLOR_BUFFER_BIT)
+    glEnable(GL_TEXTURE_2D)
+    
+    glBegin(GL_QUADS)
+    glTexCoord2f(0.0, 1.0)
+    glVertex3f(470.0, 200.0, 0.0)
 
+    glTexCoord2f(1.0, 1.0)
+    glVertex3f(670, 200.0, 0.0)
+
+    glTexCoord2f(1.0, 0.0)
+    glVertex3f(670.0, 410.0, 0.0)
+
+    glTexCoord2f(0.0, 0.0)
+    glVertex3f(470.0, 410.0, 0.0)
+    
+    glEnd()
+    glFlush()
+    glDisable(GL_TEXTURE_2D)
 
 
 def keyboardFunction(key,x,y):
-
 
     global trafficColor,circleColor,gardenColor,skyColor,r
     if key == b'r':
@@ -53,15 +85,15 @@ def keyboardFunction(key,x,y):
     elif key==b'f':
         r=20    
      
-        
-        
+    
     Graphics.redisplay()
             
 
 def displayPlane():
     offset=20
 
-    planeBodyPoints=[Point(400,100-offset),Point(450,80-offset),Point(580,80-offset),Point(580,100-offset)]
+
+    planeBodyPoints=[Point(400,90-offset),Point(450,70-offset),Point(580,75-offset),Point(580,100-offset)]
     Shape.displayRectangle(points=planeBodyPoints,color=Color.red)            
     planeTailPoints=[Point(550,80-offset),Point(580,50-offset),Point(600,50-offset),Point(580,100-offset)]
     Shape.displayRectangle(points=planeTailPoints,color=Color.red) 
@@ -375,13 +407,11 @@ def displayClouds():
     
 
 def totalDisplay():
-  
-    
+
     displaySky()
-    
     displayGarden()
     displayRoad()
-    
+    displayBusTexture()
    
     if(circleColor==Color.sunColor):
        displayClouds()
@@ -393,6 +423,7 @@ def totalDisplay():
   
     displaySun()
     
+   
     displayDoors()
     displayBlueBuildingWindows()
     displayBrownBuildingWindows()
@@ -400,12 +431,11 @@ def totalDisplay():
     displayTowerWindows()
     displayGreenBuildingWindows()
     displayLastBuildingWindows()
-    #displayBlueCar()
-    Transformation.translate(objectDisplay=displayPlane,x_trans=planeXPosition,y_trans=planeYPosition)
-    
+   
     Transformation.translate(displayBlueCar,x_pos,0)
     Transformation.translate(displayRedCar,x_pos,0)
-
+    Transformation.translate(objectDisplay=displayPlane,x_trans=planeXPosition,y_trans=planeYPosition)
+    
    
     Graphics.swapBuffer()
   
@@ -428,11 +458,13 @@ def updateCars():
    
 def updatePlane():
     global planeXPosition , planeYPosition
-    planeXPosition-=10
-    planeYPosition-=10
-    if(planeYPosition<0  or planeXPosition<0):
-        planeXPosition=900
-        planeYPosition=60
+
+    planeXPosition-=4
+    
+    planeYPosition-=0.5
+ 
+
+#7asak meday2 ya zeyaaddd
 
 
     Graphics.redisplay()      
