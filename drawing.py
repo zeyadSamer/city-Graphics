@@ -11,9 +11,10 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 from PIL import Image
+import random
 
 texture = None
-
+isRaining=False
 x=-260
 r=5
 x_pos=0
@@ -55,7 +56,7 @@ def displaySpeedLimitSignTexture():
 
 def keyboardFunction(key,x,y):
 
-    global trafficColor,circleColor,gardenColor,skyColor,r
+    global trafficColor,circleColor,gardenColor,skyColor,r,isRaining
     if key == b'r':
         trafficColor[0] = Color.red  # red
         trafficColor[2]=Color.black
@@ -108,6 +109,12 @@ def keyboardFunction(key,x,y):
 
     elif key==b'f':
         r=20    
+
+    elif key==b'm':
+         isRaining=True
+
+    elif key==b'n':
+        isRaining=False         
      
     
     Graphics.redisplay()
@@ -354,17 +361,26 @@ def displayRedCar():
     carHeadPoints2=[Point(260,340),Point(310,280),Point(410,280),Point(430,340)]
     edgePoints=[Point(430,340),Point(465,345),Point(465,380),Point(430,380)]
     Shape.displayRectangle(points=edgePoints,color=(226/255, 48/255, 14/255,1))
+
+    blendedColor = (0,0,0,0.7)
     
     Shape.displayRectangle(points = carBodyPoints1, color=(226/255, 48/255, 14/255,1))
     Shape.displayRectangle(points = carHeadPoints2, color=(226/255, 48/255, 14/255,1))
     Shape.displayCircle(centerPoint = Point(310,380), radius = 15 , color=Color.black)
     Shape.displayCircle(centerPoint = Point(410,380) , radius = 15, color = Color.black)
-    windowPoints=[Point(268,335),Point( 310,285),Point(350,285),Point(350,335)]
+    window1Points=[Point(268,335),Point( 310,285),Point(350,285),Point(350,335)]
+    window2Points=[Point(353,285),Point( 405,285),Point(419,335),Point(353,335)]
 
-    Shape.displayRectangle(points=windowPoints,color=Color.black)
-    windowPoints=[Point(353,285),Point( 405,285),Point(419,335),Point(353,335)]
+    glEnable(GL_BLEND)
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+    Shape.displayRectangle(points=window1Points,color=blendedColor)
+    glDisable(GL_BLEND)
+
+    glEnable(GL_BLEND)
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+    Shape.displayRectangle(points=window2Points,color=blendedColor)
+    glDisable(GL_BLEND)
     
-    Shape.displayRectangle(points=windowPoints,color=Color.black)
 
 
 def displayBus():
@@ -449,10 +465,23 @@ def displayClouds():
     Shape.displayCircle(centerPoint=Point(140,40),radius=17,color=cloudsColor)
     Shape.displayCircle(centerPoint=Point(160,40),radius=10,color=cloudsColor)
     
+def displayRain():
+    for i in range(0,100):
+        Shape.displayPoint(Point(random.randint(0,800),random.randint(0,600)),Color.white)
+
+def displayStars():
+    Shape.displayCircle(Point(100,50),1,Color.white)
+    Shape.displayCircle(Point(550,70),1,Color.white)
+    Shape.displayCircle(Point(260,30),1,Color.white)
+    Shape.displayCircle(Point(400,40),1,Color.white)
+    Shape.displayCircle(Point(600,20),1,Color.white)
 
 def totalDisplay():
 
     displaySky()
+    displayStars()
+        
+    glDisable(GL_FOG)
     displayGarden()
     displayRoad()
     
@@ -466,6 +495,8 @@ def totalDisplay():
     displayTrafficLight()
     displayStreetLight()
 
+
+
    
     displayDoors()
     displayBlueBuildingWindows()
@@ -474,15 +505,24 @@ def totalDisplay():
     displayTowerWindows()
     displayGreenBuildingWindows()
     displayLastBuildingWindows()
+    
+    if(isRaining==True):
+       displayRain()
    
+
+
+
+
+
     displaySpeedLimitSignTexture()
+    # if skyColor==Color.black:
+    #     displayStars()
 
     Transformation.translate(displayBlueCar,x_pos,0)
     Transformation.translate(displayRedCar,x_pos,0)
     Transformation.translate(displayBus,x_pos,0)
     Transformation.translate(objectDisplay=displayPlane,x_trans=planeXPosition,y_trans=planeYPosition)
-    
-   
+
     Graphics.swapBuffer()
   
     

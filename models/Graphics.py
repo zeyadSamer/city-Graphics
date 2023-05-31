@@ -13,11 +13,10 @@ WINDOW_HEIGHT = 500
 
 class Graphics:
 
-
     def initializeSettings(self):
         
-        gluOrtho2D(0,700, 400,0)   
-            
+        gluOrtho2D(0,700, 400,0)  
+
         
     def redisplay():
         glutPostRedisplay()
@@ -44,8 +43,9 @@ class Graphics:
         glutCreateWindow("my window")
         self.initializeSettings()
         glutDisplayFunc(display)
+        
         glutIdleFunc(idleFunction)
+        
         glutKeyboardFunc(keyboardFunction)
         self.load_texture()
-
         glutMainLoop()

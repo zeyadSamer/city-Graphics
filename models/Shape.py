@@ -64,3 +64,12 @@ class Shape:
       glVertex2f(p2.x,p2.y)
       glEnd()
       glFlush()
+
+    def displayPoint(p,color):
+        glPointSize(5)
+        glBegin(GL_POINTS)
+        
+        glColor4f(*color)
+        glVertex2f(p.x,p.y)
+        glEnd()
+        glFlush()
