@@ -24,6 +24,7 @@ trafficColor=[Color.red,Color.black,Color.black]
 circleColor=Color.sunColor
 gardenColor=Color.green
 skyColor=Color.sunnySkyColor
+cloudsColor = Color.white
 
 def displaySpeedLimitSignTexture():
 
@@ -72,6 +73,35 @@ def keyboardFunction(key,x,y):
         circleColor=Color.sunColor
         gardenColor=Color.green
         skyColor=Color.sunnySkyColor
+        cloudsColor = Color.white
+        glDisable(GL_LIGHTING)
+
+    elif key==b's':
+        circleColor=Color.sunsetColor
+        cloudsColor = Color.sunsetColor
+        glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
+        glEnable(GL_LIGHTING)
+        glEnable(GL_LIGHT0)
+        glEnable(GL_COLOR_MATERIAL)
+
+        light_position = [0.0, 50.0, 0.05, 1.0]  # Position of the light source
+        ambient_color = [0.7, 0.5, 0.5, 1.0]  # Ambient color of the light
+        diffuse_color = [1.0, 1.0, 1.0, 1.0]  # Diffuse color of the light
+        specular_color = [1.0, 1.0, 1.0, 1.0]  # Specular color of the light
+
+        material_shininess = 100
+
+        glLightfv(GL_LIGHT0, GL_POSITION, light_position)
+        glLightfv(GL_LIGHT0, GL_AMBIENT, ambient_color)
+        glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse_color)
+        glLightfv(GL_LIGHT0, GL_SPECULAR, specular_color)
+
+        glMaterialfv(GL_FRONT, GL_AMBIENT, ambient_color)  # Adjust ambient color for dark state
+        glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse_color)  # Adjust diffuse color for dark state
+        glMaterialfv(GL_FRONT, GL_SPECULAR, specular_color)  # Adjust specular color for dark state
+        glMaterialf(GL_FRONT, GL_SHININESS, material_shininess)
+
+
     
     elif key==b'b':
         r=-20
@@ -409,15 +439,15 @@ def displaySun():
 
 def displayClouds():
 
-    Shape.displayCircle(centerPoint=Point(200,40),radius=10,color=(255,255,255,1))
-    Shape.displayCircle(centerPoint=Point(220,40),radius=17,color=(255,255,255,1))
-    Shape.displayCircle(centerPoint=Point(240,40),radius=17,color=(255,255,255,1))
-    Shape.displayCircle(centerPoint=Point(260,40),radius=17,color=(255,255,255,1))
-    Shape.displayCircle(centerPoint=Point(280,40),radius=10,color=(255,255,255,1))
-    Shape.displayCircle(centerPoint=Point(100,40),radius=10,color=(255,255,255,1))
-    Shape.displayCircle(centerPoint=Point(120,40),radius=17,color=(255,255,255,1))
-    Shape.displayCircle(centerPoint=Point(140,40),radius=17,color=(255,255,255,1))
-    Shape.displayCircle(centerPoint=Point(160,40),radius=10,color=(255,255,255,1))
+    Shape.displayCircle(centerPoint=Point(200,40),radius=10,color=cloudsColor)
+    Shape.displayCircle(centerPoint=Point(220,40),radius=17,color=cloudsColor)
+    Shape.displayCircle(centerPoint=Point(240,40),radius=17,color=cloudsColor)
+    Shape.displayCircle(centerPoint=Point(260,40),radius=17,color=cloudsColor)
+    Shape.displayCircle(centerPoint=Point(280,40),radius=10,color=cloudsColor)
+    Shape.displayCircle(centerPoint=Point(100,40),radius=10,color=cloudsColor)
+    Shape.displayCircle(centerPoint=Point(120,40),radius=17,color=cloudsColor)
+    Shape.displayCircle(centerPoint=Point(140,40),radius=17,color=cloudsColor)
+    Shape.displayCircle(centerPoint=Point(160,40),radius=10,color=cloudsColor)
     
 
 def totalDisplay():
@@ -425,18 +455,17 @@ def totalDisplay():
     displaySky()
     displayGarden()
     displayRoad()
-        
+    
+    displaySun()
 
-    if(circleColor==Color.sunColor):
+    if(circleColor==Color.sunColor or circleColor==Color.sunsetColor):
        displayClouds()
 
     displayBuildings()
     displayTree()
     displayTrafficLight()
     displayStreetLight()
-  
-    displaySun()
-    
+
    
     displayDoors()
     displayBlueBuildingWindows()
