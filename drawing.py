@@ -15,7 +15,7 @@ from PIL import Image
 texture = None
 
 x=-260
-r=10
+r=5
 x_pos=0
 planeXPosition=0
 planeYPosition=0
@@ -336,6 +336,29 @@ def displayRedCar():
     
     Shape.displayRectangle(points=windowPoints,color=Color.black)
 
+
+def displayBus():
+    busBodyPoints = [Point(500,320),Point(680,320),Point(680,380),Point(500,380)]
+    busHeadPoints = [Point(500,270),Point(670,270),Point(680,320),Point(500,320)]
+
+    window1Points = [Point(510,280),Point(550,280),Point(550,310),Point(510,310)]
+    window2Points = [Point(555,280),Point(595,280),Point(595,310),Point(555,310)]
+    window3Points = [Point(600,280),Point(640,280),Point(640,310),Point(600,310)]
+    window4Points = [Point(645,280),Point(665,280),Point(670,310),Point(645,310)]
+    
+
+    Shape.displayRectangle(points=busBodyPoints,color=(1,1,0,1))
+    Shape.displayRectangle(points=busHeadPoints,color=(1,1,0,1))
+
+    Shape.displayRectangle(points=window1Points,color=(0,0,0,1))
+    Shape.displayRectangle(points=window2Points,color=(0,0,0,1))
+    Shape.displayRectangle(points=window3Points,color=(0,0,0,1))
+    Shape.displayRectangle(points=window4Points,color=(0,0,0,1))
+
+    Shape.displayCircle(centerPoint = Point(540,380), radius = 15, color = Color.black)
+    Shape.displayCircle(centerPoint = Point(640,380), radius = 15, color = Color.black)
+    
+
     
 def displayTrafficLight():
     rectangularPoints=[Point(660,140),Point(670,140),Point(670,325),Point(660,325)] 
@@ -402,10 +425,7 @@ def totalDisplay():
     displaySky()
     displayGarden()
     displayRoad()
-    
-
-
-    
+        
 
     if(circleColor==Color.sunColor):
        displayClouds()
@@ -425,11 +445,12 @@ def totalDisplay():
     displayTowerWindows()
     displayGreenBuildingWindows()
     displayLastBuildingWindows()
-
+   
     displaySpeedLimitSignTexture()
 
     Transformation.translate(displayBlueCar,x_pos,0)
     Transformation.translate(displayRedCar,x_pos,0)
+    Transformation.translate(displayBus,x_pos,0)
     Transformation.translate(objectDisplay=displayPlane,x_trans=planeXPosition,y_trans=planeYPosition)
     
    
@@ -447,7 +468,7 @@ def updateCars():
     if(trafficColor[0]!=Color.red):
        x_pos+=r
        if(x_pos>700):
-           x_pos=100
+           x_pos=0
    
     Graphics.redisplay()
         
