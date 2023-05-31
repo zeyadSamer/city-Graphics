@@ -25,36 +25,30 @@ circleColor=Color.sunColor
 gardenColor=Color.green
 skyColor=Color.sunnySkyColor
 
-# def load_texture():
-#     global texture
-#     texture = glGenTextures(1)
-#     glBindTexture(GL_TEXTURE_2D, texture)
-#     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
-#     image = Image.open("bus.png")
-#     flipped_image = image.transpose(Image.FLIP_TOP_BOTTOM)
-#     img_data = flipped_image.convert("RGBA").tobytes()
-#     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, flipped_image.width, flipped_image.height, 0, GL_RGBA, GL_UNSIGNED_BYTE , img_data)
+def displaySpeedLimitSignTexture():
 
-def displayBusTexture():
-
-    #glClear(GL_COLOR_BUFFER_BIT)
     glEnable(GL_TEXTURE_2D)
     
     glBegin(GL_QUADS)
+    
+    glColor4f(1, 1, 1, 1)
+
     glTexCoord2f(0.0, 1.0)
-    glVertex3f(470.0, 200.0, 0.0)
+    glVertex3f(640.0, 210.0, 0.0)
 
     glTexCoord2f(1.0, 1.0)
-    glVertex3f(670, 200.0, 0.0)
+    glVertex3f(690, 210.0, 0.0)
 
     glTexCoord2f(1.0, 0.0)
-    glVertex3f(670.0, 410.0, 0.0)
+    glVertex3f(690.0, 280.0, 0.0)
 
     glTexCoord2f(0.0, 0.0)
-    glVertex3f(470.0, 410.0, 0.0)
+    glVertex3f(640.0, 280.0, 0.0)
+
     
     glEnd()
     glFlush()
+    
     glDisable(GL_TEXTURE_2D)
 
 
@@ -326,7 +320,6 @@ def displayBlueCar():
    
 def displayRedCar():
     
-    
     carBodyPoints1=[Point(260,340),Point(430,340),Point(430,380),Point(260,380)]
     carHeadPoints2=[Point(260,340),Point(310,280),Point(410,280),Point(430,340)]
     edgePoints=[Point(430,340),Point(465,345),Point(465,380),Point(430,380)]
@@ -342,8 +335,6 @@ def displayRedCar():
     windowPoints=[Point(353,285),Point( 405,285),Point(419,335),Point(353,335)]
     
     Shape.displayRectangle(points=windowPoints,color=Color.black)
-    
-
 
     
 def displayTrafficLight():
@@ -411,8 +402,11 @@ def totalDisplay():
     displaySky()
     displayGarden()
     displayRoad()
-    displayBusTexture()
-   
+    
+
+
+    
+
     if(circleColor==Color.sunColor):
        displayClouds()
 
@@ -431,7 +425,9 @@ def totalDisplay():
     displayTowerWindows()
     displayGreenBuildingWindows()
     displayLastBuildingWindows()
-   
+
+    displaySpeedLimitSignTexture()
+
     Transformation.translate(displayBlueCar,x_pos,0)
     Transformation.translate(displayRedCar,x_pos,0)
     Transformation.translate(objectDisplay=displayPlane,x_trans=planeXPosition,y_trans=planeYPosition)
