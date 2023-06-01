@@ -1,6 +1,7 @@
-#12th Week Lab Assignment
+#Final Project
 #Ahmed El-Hussein Ahmed 19106798
 #Zeyad Ahmed Samer 20106344
+
 
 from OpenGL.GL import *
 from OpenGL.GLU import *
@@ -43,9 +44,7 @@ class Graphics:
         glutCreateWindow("my window")
         self.initializeSettings()
         glutDisplayFunc(display)
-        
         glutIdleFunc(idleFunction)
-        
         glutKeyboardFunc(keyboardFunction)
         self.load_texture()
         glutMainLoop()

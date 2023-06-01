@@ -1,4 +1,4 @@
-#12th Week Lab Assignment
+#Final Project
 #Ahmed El-Hussein Ahmed 19106798
 #Zeyad Ahmed Samer 20106344
 
@@ -78,32 +78,31 @@ def keyboardFunction(key,x,y):
         glDisable(GL_LIGHTING)
 
     elif key==b's':
-        circleColor=Color.sunsetColor
-        cloudsColor = Color.sunsetColor
-        glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
-        glEnable(GL_LIGHTING)
-        glEnable(GL_LIGHT0)
-        glEnable(GL_COLOR_MATERIAL)
+        if skyColor != Color.black:
+            circleColor=Color.sunsetColor
+            cloudsColor = Color.sunsetColor
+            glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
+            glEnable(GL_LIGHTING)
+            glEnable(GL_LIGHT0)
+            glEnable(GL_COLOR_MATERIAL)
 
-        light_position = [0.0, 50.0, 0.05, 1.0]  # Position of the light source
-        ambient_color = [0.7, 0.5, 0.5, 1.0]  # Ambient color of the light
-        diffuse_color = [1.0, 1.0, 1.0, 1.0]  # Diffuse color of the light
-        specular_color = [1.0, 1.0, 1.0, 1.0]  # Specular color of the light
+            light_position = [0.0, 50.0, 0.05, 1.0]  # Position of the light source
+            ambient_color = [0.7, 0.5, 0.5, 1.0]  # Ambient color of the light
+            diffuse_color = [1.0, 1.0, 1.0, 1.0]  # Diffuse color of the light
+            specular_color = [1.0, 1.0, 1.0, 1.0]  # Specular color of the light
 
-        material_shininess = 100
+            material_shininess = 100
 
-        glLightfv(GL_LIGHT0, GL_POSITION, light_position)
-        glLightfv(GL_LIGHT0, GL_AMBIENT, ambient_color)
-        glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse_color)
-        glLightfv(GL_LIGHT0, GL_SPECULAR, specular_color)
+            glLightfv(GL_LIGHT0, GL_POSITION, light_position)
+            glLightfv(GL_LIGHT0, GL_AMBIENT, ambient_color)
+            glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse_color)
+            glLightfv(GL_LIGHT0, GL_SPECULAR, specular_color)
 
-        glMaterialfv(GL_FRONT, GL_AMBIENT, ambient_color)  # Adjust ambient color for dark state
-        glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse_color)  # Adjust diffuse color for dark state
-        glMaterialfv(GL_FRONT, GL_SPECULAR, specular_color)  # Adjust specular color for dark state
-        glMaterialf(GL_FRONT, GL_SHININESS, material_shininess)
-
-
-    
+            glMaterialfv(GL_FRONT, GL_AMBIENT, ambient_color)  # Adjust ambient color for dark state
+            glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse_color)  # Adjust diffuse color for dark state
+            glMaterialfv(GL_FRONT, GL_SPECULAR, specular_color)  # Adjust specular color for dark state
+            glMaterialf(GL_FRONT, GL_SHININESS, material_shininess)
+        
     elif key==b'b':
         r=-20
 
@@ -116,13 +115,11 @@ def keyboardFunction(key,x,y):
     elif key==b'n':
         isRaining=False         
      
-    
     Graphics.redisplay()
             
 
 def displayPlane():
     offset=20
-
 
     planeBodyPoints=[Point(400,90-offset),Point(450,70-offset),Point(580,75-offset),Point(580,100-offset)]
     Shape.displayRectangle(points=planeBodyPoints,color=Color.red)            
@@ -130,8 +127,6 @@ def displayPlane():
     Shape.displayRectangle(points=planeTailPoints,color=Color.red) 
     tailLinePoints=[Point(600,50-offset),Point(610,50-offset)]
     Shape.displayLine(*tailLinePoints,color=Color.red)
-
-
 
 def displaySky():
     higherRectanglePoints=[Point(0,0),Point(800,0),Point(800,150),Point(0,150)]
@@ -294,9 +289,6 @@ def displayGreenBuildingWindows():
 
     Shape.displayRectangle(points=greenBuildingWindow7Points, color=Color.black)
     Shape.displayRectangle(points=greenBuildingWindow8Points, color=Color.black)
-
-
-
 
 def displayBuildings():
 
@@ -479,7 +471,7 @@ def displayStars():
 def totalDisplay():
 
     displaySky()
-    displayStars()
+    #displayStars()
         
     glDisable(GL_FOG)
     displayGarden()
@@ -494,9 +486,6 @@ def totalDisplay():
     displayTree()
     displayTrafficLight()
     displayStreetLight()
-
-
-
    
     displayDoors()
     displayBlueBuildingWindows()
@@ -510,13 +499,9 @@ def totalDisplay():
        displayRain()
    
 
-
-
-
-
     displaySpeedLimitSignTexture()
-    # if skyColor==Color.black:
-    #     displayStars()
+    if skyColor==Color.black:
+        displayStars()
 
     Transformation.translate(displayBlueCar,x_pos,0)
     Transformation.translate(displayRedCar,x_pos,0)
@@ -527,8 +512,6 @@ def totalDisplay():
   
     
 graphics=Graphics()  
-
-
 
 def updateCars():
  
@@ -560,6 +543,4 @@ def idleFunction():
     updateCars()   
 
 
-
 graphics.initializeWindow(display=totalDisplay,idleFunction=idleFunction,keyboardFunction=keyboardFunction)
-
